@@ -1,41 +1,41 @@
-title: Intro to Python
-tagline: Step by step to your first Python application
-description: Go from Hello World to writing a short random quote generator using Python.
-tags: python
+#title: Intro to Python
+#tagline: Step by step to your first Python application
+#description: Go from Hello World to writing a short random quote generator using Python.
+#tags: python
+#
+#template:
+#  name: python-random-quote
+#  repo: python-quotes
+#
+#before:
+#- type: createIssue
+#  title: Make Sure Python is Installed
+#  body: introduction.md
 
+title: Commenting on Issues
+tagline: Learn how to comment on an issue
+description: Point users to a newly created issue and closes the original issue
 template:
   name: python-random-quote
   repo: python-quotes
+steps:
+  - title: Comment on an issue
+    event: issue_comment.created
+    actions:
+      - type: createIssue
+        title: New Issue
+        body: an-issue.md
+        # Store the response for this new issue by assigning an action_id
+        action_id: new_issue
 
-before:
-- type: createIssue
-  title: Make Sure Python is Installed
-  body: introduction.md
+        # Close the issue the user just commented on
+      - type: closeIssue
 
-#title: Commenting on Issues
-#tagline: Learn how to comment on an issue
-#description: Point users to a newly created issue and closes the original issue
-#template:
-#  name: python-random-quote
-#  repo: python-quote
-#steps:
-#  - title: Comment on an issue
-#    event: issue_comment.created
-#    actions:
-#      - type: createIssue
-#        title: New Issue
-#        body: an-issue.md
-#        # Store the response for this new issue by assigning an action_id
-#        action_id: new_issue
-#
-#        # Close the issue the user just commented on
-#      - type: closeIssue
-#
-#        # Respond in the issue the user just commented on
-#      - type: respond
-#        with: a-response.md
-#        # Include a `data` object to provide some template variables
-#        data:
-#          # Reference the response of the `new_issue` action
-#          nextIssueUrl: '%actions.new_issue.data.html_url%'
-#
+        # Respond in the issue the user just commented on
+      - type: respond
+        with: a-response.md
+        # Include a `data` object to provide some template variables
+        data:
+          # Reference the response of the `new_issue` action
+          nextIssueUrl: '%actions.new_issue.data.html_url%'
+
