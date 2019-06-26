@@ -1,0 +1,13 @@
+title: Intro to Python
+tagline: Step by step to your first Python application
+description: Go from Hello World to writing a short random quote generator using Python.
+tags: python
+
+template:
+  name: python-random-quote
+  repo: python-quote
+
+before:
+- type: createIssue
+  title: Make Sure Python is Installed
+  body: introduction.md
