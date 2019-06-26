@@ -16,8 +16,8 @@ title: Commenting on Issues
 tagline: Learn how to comment on an issue
 description: Point users to a newly created issue and closes the original issue
 template:
-  name: commenting-on-issues
-  repo: commenting-on-issues-template
+  name: python-random-quote
+  repo: python-quote
 steps:
   - title: Comment on an issue
     event: issue_comment.created
