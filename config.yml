@@ -13,7 +13,7 @@ before:
 steps:
   - title: Set up your environment
     description: Check that Python and Git are installed
-    event: issue.closed
+    event: issues.closed
     link: "{{ repoUrl }}/issues/1"
     actions:
       - type: respond
