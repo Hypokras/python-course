@@ -1,27 +1,356 @@
-title: Introduction to Python
-tagline: Step by step to your first Python application
-description: Go from Hello World to writing a short random quote generator using Python.
+title: Introduction to HTML
+tagline: Take your first steps in the world of programming
+description: If you are looking for a quick and fun introduction to the exciting world of programming, this course is for you. Learn fundamental HTML skills and build your first webpage in less than an hour.
 template:
-  name: python-random-quote
-  repo: python-quotes
-  description: "A file-based quote bot written in Python"
+  name: intro-html
+  repo: intro-to-html-template
+  description: "A robot powered training repository :robot:"
 before:
   - type: createIssue
-    title: Prepare your environment
-    body: 01-environment.md
+    title: Welcome
+    body: 01-welcome.md
 
 steps:
-  - title: Set up your environment
-    description: Check that Python and Git are installed
-    event: issue.closed
+  - title: Hello World
+    description: Show a message and make sure everything is working!
+    event: push
     link: "{{ repoUrl }}/issues/1"
     actions:
       - type: respond
-        with: 01-closed.md
-        issue: 1
+        with: woot.md
+        issue: Welcome
+
+  - title: Next step
+    description: Open a pull request.
+    event: pull_request.opened
+    link: "{{ repoUrl }}/issues/1"
+    actions:
+      - type: gate
+        left: "%payload.pull_request.head.ref%"
+        operator: ===
+        right: add-index
+      - type: gate
+        left: "%payload.pull_request.base.ref%"
+        operator: ===
+        right: master
+      - type: closeIssue
+        issue: Welcome
+        action_id: prev
+        required: false
+      - type: createPullRequestComment
+        body: 02-html-structure.md
+        file: index.html
+        position: 1
+        data:
+          welcomeLink: "%actions.prev.data.html_url%"
+
+  - title: Third step
+    description: Follow the instructions to write the base structure of your HTML file
+    event: pull_request.synchronize
+    link: "{{ repoUrl }}/pulls"
+    actions:
+      - type: getFileContents
+        filename: index.html
+        action_id: index_file
+      - type: htmlContainsTag
+        html: "%actions.index_file%"
+        tag: html
+        action_id: contains_html
+        required: false
+      - type: htmlContainsTag
+        html: "%actions.index_file%"
+        tag: body
+        action_id: contains_body
+        required: false
+      - type: gate
+        every: true
+        gates:
+          - left: "%actions.contains_html%"
+          - left: "%actions.contains_body%"
+        else:
+          type: createReview
+          body: 03e-add-html.md
+          event: REQUEST_CHANGES
+      - type: createPullRequestComment
+        body: 03-title-tag.md
+        file: index.html
+        position: 2
+
+  - title: Add a title tag
+    description: Add a title tag
+    event: pull_request.synchronize
+    link: "{{ repoUrl }}/pulls"
+    actions:
+      - type: getFileContents
+        filename: index.html
+        action_id: index_file
+      - type: htmlContainsTag
+        html: "%actions.index_file%"
+        tag: head
+        action_id: contains_head
+        required: false
+      - type: htmlContainsTag
+        html: "%actions.index_file%"
+        tag: title
+        action_id: contains_title
+        required: false
+      - type: gate
+        every: true
+        gates:
+          - left: "%actions.contains_title%"
+          - left: "%actions.contains_head%"
+        else:
+          type: createReview
+          event: REQUEST_CHANGES
+          body: 03e-add-title.md
+      - type: createReview
+        event: APPROVE
+        body: 04-merge-first-pr.md
+
+  - title: Merge your first pull request
+    description: Merge your pull request
+    event: pull_request.closed
+    link: "{{ repoUrl }}/pulls"
+    actions:
+      - type: gate
+        left: "%payload.pull_request.merged%"
+      - type: octokit
+        method: repos.getPages
+        owner: "%payload.repository.owner.login%"
+        repo: "%payload.repository.name%"
+        action_id: pagesUrl
       - type: createIssue
-        title: Run your first Python program
-        body: 02-helloworld.md
+        title: Add a header
+        body: 05-h1-tag.md
+        data:
+          pagesUrl: "%actions.pagesUrl.data.html_url%"
+        action_id: new_issue
+      - type: respond
+        with: next.md
+        data:
+          issueURL: "%actions.new_issue.data.html_url%"
+
+  - title: Change your username to an h1 tag
+    description: Change your username to an h1 tag
+    event: pull_request
+    link: "{{ repoUrl }}/pulls"
+    actions:
+      - type: gate
+        gates:
+          - left: "%payload.action%"
+            operator: ===
+            right: opened
+          - left: "%payload.action%"
+            operator: ===
+            right: synchronize
+      - type: gate
+        left: "%payload.pull_request.base.ref%"
+        operator: ===
+        right: master
+      - type: gate
+        left: "%payload.action%"
+        operator: "!=="
+        right: opened
+        required: false
+        else:
+          type: closeIssue
+          issue: Add a header
+          required: false
+      - type: getFileContents
+        filename: index.html
+        action_id: index_file
+      - type: htmlContainsTag
+        html: "%actions.index_file%"
+        tag: h1
+        action_id: contains_h1
+        required: false
+      - type: gate
+        left: "%actions.contains_h1%"
+        else:
+          type: createReview
+          event: REQUEST_CHANGES
+          body: 05e-troubleshoot-h1.md
+      - type: createPullRequestComment
+        body: 06-add-image.md
+        file: index.html
+        position: 5
+
+  - title: Add an image
+    description: Add an image
+    event: pull_request.synchronize
+    link: "{{ repoUrl }}/pulls"
+    actions:
+      - type: getFileContents
+        filename: index.html
+        action_id: index_file
+      - type: htmlContainsTag
+        html: "%actions.index_file%"
+        tag: img
+        attribute: src
+        action_id: contains_img
+      - type: gate
+        left: "%actions.contains_img%"
+        else:
+          type: createReview
+          body: 06e-image.md
+          event: REQUEST_CHANGES
+      - type: createReview
+        body: 07-merge-second-pr.md
+        event: APPROVE
+
+  - title: Merge your second pull request
+    description: Merge your pull request
+    event: pull_request.closed
+    link: "{{ repoUrl }}/pulls"
+    actions:
+      - type: gate
+        left: "%payload.pull_request.merged%"
+      - type: octokit
+        method: repos.getPages
+        owner: "%payload.repository.owner.login%"
+        repo: "%payload.repository.name%"
+        action_id: pagesUrl
+      - type: createIssue
+        action_id: new_issue
+        title: Create a list
+        body: 08-create-list.md
+        data:
+          pagesUrl: "%actions.pagesUrl.data.html_url%"
+      - type: respond
+        with: next.md
+        data:
+          issueURL: "%actions.new_issue.data.html_url%"
+
+  - title: Create a list
+    description: Create a list
+    event: pull_request
+    link: "{{ repoUrl }}/pulls"
+    actions:
+      - type: gate
+        gates:
+          - left: "%payload.action%"
+            operator: ===
+            right: opened
+          - left: "%payload.action%"
+            operator: ===
+            right: synchronize
+      - type: gate
+        left: "%payload.pull_request.base.ref%"
+        operator: ===
+        right: master
+      - type: gate
+        left: "%payload.action%"
+        operator: "!=="
+        right: opened
+        required: false
+        else:
+          type: closeIssue
+          issue: Create a list
+          required: false
+      - type: getFileContents
+        filename: index.html
+        action_id: index_file
+      - type: htmlContainsTag
+        html: "%actions.index_file%"
+        tag: ul
+        action_id: contains_ul
+        required: false
+      - type: htmlContainsTag
+        html: "%actions.index_file%"
+        tag: ol
+        action_id: contains_ol
+        required: false
+      - type: gate
+        gates:
+          - left: "%actions.contains_ul%"
+          - left: "%actions.contains_ol%"
+        else:
+          type: createReview
+          body: 08e-list.md
+          event: REQUEST_CHANGES
+      - type: createPullRequestComment
+        body: 09-add-links.md
+        file: index.html
+        position: 7
+
+  - title: Add links
+    description: Add links
+    event: pull_request.synchronize
+    link: "{{ repoUrl }}/pulls"
+    actions:
+      - type: getFileContents
+        filename: index.html
+        action_id: index_file
+      - type: htmlContainsTag
+        html: "%actions.index_file%"
+        tag: a
+        action_id: contains_a
+        required: false
+      - type: gate
+        left: "%actions.contains_a%"
+        else:
+          type: createReview
+          body: 09e-links.md
+          event: REQUEST_CHANGES
+      - type: createReview
+        body: 10-merge-third-pr.md
+        event: APPROVE
+
+  - title: Merge your third pull request
+    description: Merge your pull request
+    event: pull_request.closed
+    link: "{{ repoUrl }}/pulls"
+    actions:
+      - type: gate
+        left: "%payload.pull_request.merged%"
+      - type: mergeBranch
+        head: master
+        base: add-style
+      - type: createPullRequest
+        title: Add some style to your page
+        head: add-style
+        body: 11-link-css.md
+        action_id: new_pr
+      - type: respond
+        with: next.md
+        data:
+          issueURL: "%actions.new_pr.data.html_url%"
+
+  - title: Make it beautiful
+    description: Add some styles to your new site
+    event: pull_request.synchronize
+    link: "{{ repoUrl }}/pulls"
+    actions:
+      - type: getFileContents
+        filename: index.html
+        action_id: index
+      - type: gate
+        left: '/<link rel="stylesheet" href="style.css">/'
+        operator: test
+        right: "%actions.index%"
+        else:
+          type: respond
+          with: 11-style-fail.md
+      - type: removeBranchProtection
+      - type: respond
+        with: 11-style-success.md
+
+  - title: Merge the final pull request
+    description: Get ready to show off your new skills
+    event: pull_request.closed
+    link: "{{ repoUrl }}/pulls"
+    actions:
+      - type: gate
+        left: "%payload.pull_request.merged%"
+      - type: octokit
+        method: repos.getPages
+        owner: "%payload.repository.owner.login%"
+        repo: "%payload.repository.name%"
+        action_id: pagesUrl
+      - type: respond
+        with: 12-big-finish.md
+        data:
+          pagesUrl: "%actions.pagesUrl.data.html_url%"
 
 tags:
-  - Python
+  - GitHub Pages
