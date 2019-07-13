@@ -7,7 +7,7 @@ template:
   description: "A file-based quote bot written in Python"
 before:
   - type: createIssue
-    title: Prepare Your Environment
+    title: Prepare your environment
     body: 01-environment.md
 
 steps:
@@ -19,4 +19,9 @@ steps:
       - type: respond
         with: 01-closed.md
         issue: 1
+      - type: createIssue
+        title: Run your first Python program
+        body: 02-helloworld.md
 
+tags:
+  - Python
