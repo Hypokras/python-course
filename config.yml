@@ -71,7 +71,9 @@ steps:
       - type: createIssue
         title: Explore Python on your own
         body: 04-explore.md
-  - title: Explore Python on your own
+      - type: closeIssue
+        issue: 3
+- title: Explore Python on your own
     description: Some ideas for next steps
     event: issues.closed
     link: "{{ repoUrl }}/issues/3"
