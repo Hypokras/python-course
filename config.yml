@@ -22,6 +22,37 @@ steps:
       - type: createIssue
         title: Run your first Python program
         body: 02-helloworld.md
+        
+  - title: Hello World
+    description: Run the classic first program in Python
+    event: push
+    link: "{{ repoUrl }}/issues/2"
+    actions:
+      - type: respond
+        with: 02-function.md
+        issue: 2
+  - title: Change the Primary Function
+    description: Learn how the main() thing works
+    event: push
+    link: "{{ repoUrl }}/issues/2"
+    actions:
+      - type: closeIssue
+        issue: 2
+      - type: createIssue
+        title: Read from a file
+        body: 03-readfile.md
+      - type: respond
+        with: 02-goissue.md
+        issue: 2
+  - title: Read from a file
+    description: Use file input to change your Python output
+    event: issue_comment
+    link: "{{ repoUrl }}/issues/3"
+    actions:
+      - type: respond
+        with: 03-firstquote.md
+        issue: 3
+
 
 tags:
   - Python
