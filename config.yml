@@ -62,7 +62,7 @@ steps:
         issue: 3
   - title: Retrieve a random quote
     description: Use your array knowledge to print quotes at random
-    event: issue_comment
+    event: push
     link: "{{ repoUrl }}/issues/3"
     actions:
       - type: respond
@@ -73,7 +73,7 @@ steps:
         body: 04-explore.md
 - title: Explore Python on your own
     description: Some ideas for next steps
-    event: push
+    event: issues.closed
     link: "{{ repoUrl }}/issues/3"
     actions:
       - type: respond
