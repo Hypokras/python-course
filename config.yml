@@ -31,31 +31,56 @@ steps:
       - type: respond
         with: 02-function.md
         issue: 2
-  - title: Change the Primary Function
+  - title: Change the primary function
     description: Learn how the main() thing works
     event: push
     link: "{{ repoUrl }}/issues/2"
     actions:
+      - type: respond
+        with: 02-goissue.md
+        issue: 2
       - type: closeIssue
         issue: 2
       - type: createIssue
         title: Read from a file
         body: 03-readfile.md
-      - type: respond
-        with: 02-goissue.md
-        issue: 2
-  - title: Read from a file
+  - title: Read a file into an array
     description: Use file input to change your Python output
     event: issue_comment
     link: "{{ repoUrl }}/issues/3"
     actions:
-      - type: gate
-        left: '%payload.sender.login%'
-        operator: ===
-        right: '%user.login%'
       - type: respond
         with: 03-firstquote.md
         issue: 3
+  - title: Get the last element of an array
+    description: Explore the quotes file and grab the last one
+    event: issue_comment
+    link: "{{ repoUrl }}/issues/3"
+    actions:
+      - type: respond
+        with: 03-secondquote.md
+        issue: 3
+  - title: Retrieve a random quote
+    description: Use your array knowledge to print quotes at random
+    event: issue_comment
+    link: "{{ repoUrl }}/issues/3"
+    actions:
+      - type: respond
+        with: 03-randomquote.md
+        issue: 3
+      - type: createIssue
+        title: Explore Python on your own
+        body: 04-explore.md
+- title: Explore Python on your own
+    description: Some ideas for next steps
+    event: push
+    link: "{{ repoUrl }}/issues/3"
+    actions:
+      - type: respond
+        with: 04-advancedtutorial.md
+        issue: 4
+
+
 
 
 tags:
