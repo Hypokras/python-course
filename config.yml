@@ -49,6 +49,10 @@ steps:
     event: issue_comment
     link: "{{ repoUrl }}/issues/3"
     actions:
+      - type: gate
+        left: '%payload.sender.login%'
+        operator: ===
+        right: '%user.login%'
       - type: respond
         with: 03-firstquote.md
         issue: 3
