@@ -1,3 +1,5 @@
-Learning the things you can change and the things you can't is a big part of programming. I've closed this issue and created a [new issue]({{ repoUrl }}/issues/3) where we'll cover reading from a file.
+Learning the things you can change and the things you can't is a big part of programming.
 
-TODO: clean up?
+Next we'll read from our quotes file, taking a step toward building the quote bot.
+
+You can track your progress in this [new issue]({{ repoUrl }}/issues/3).
