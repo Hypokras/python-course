@@ -1,3 +1,3 @@
-Ready for more Python? Check out the advanced tutorial.
+🎉🎉🎉 Good work on your first Python code!
 
-TODO: add advanced tutorial when it exists. Start with a link elsewhere? Or maybe to Learning Lab home?
+Ready to learn some more? Check out the [Learning Lab](https://lab.github.com/) for more courses.
