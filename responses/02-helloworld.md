@@ -18,7 +18,7 @@ You've edited your local code, so you have a more recent version than is stored 
 It should show one file modified. Every time we want to send our local changes to GitHub, we need to perform three steps:
 
 1. Add the file(s) with changes: `git add get-quote.py`
-2. Commit the changes: `git commit -m "Hello World!"
+2. Commit the changes: `git commit -m "Hello World!"`
 3. Push the changes: `git push`
 
 Once you've completed these steps, we'll write some more Python.
