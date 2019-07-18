@@ -19,7 +19,7 @@ When your Python script is running, you'll see the quote again.
 To move on to the next step, push your changes:
 
 - `git add get-quote.py`
-- `git commit -m "Hello World!"`
+- `git commit -m "Renamed the primary function"`
 - `git push`
 
 When I see the push come through, I'll share your next steps!
