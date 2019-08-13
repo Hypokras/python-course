@@ -21,7 +21,7 @@ The `last` variable holds the highest index for the array. Then our random numbe
 > `  last = len(quotes) - 1`
 
 Finally, update the line where we print a single quote. Instead of including a number between the brackets, we'll put our random number variable:
-`  print quotes[rnd]`
+`  print(quotes[rnd])`
 
 Try running your code a few times and your quotes should now be chosen at random.
 
