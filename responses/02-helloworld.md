@@ -4,9 +4,17 @@ Now you're ready to start coding. Let's get familiar with the files in our repo:
 - `get-quote.py`: the file where we'll write our Python code
 - `quotes.txt`: a text file with a list of quotes
 
-Open up `get-quote.py` and comment out line 2 by removing the `#` from the beginning of the line.
+Open up `get-quote.py` and comment out line 2 by removing the `#` from the beginning of the line. It will look like this:
+```
+  print("Keep it logically awesome.")
+```
 
-Now let's try running that Python script. From the command line, type: `python get-quote.py`
+The two spaces (or one tab) in front of the line is important. Python uses whitespace to organize code. This print line is part of the `main()` function. But more on that in the next step. First, let's try running that Python script.
+
+Use the Python 3 command to run the script. From the command line, type one of the following:
+
+- `python get-quote.py`
+- `python3 get-quote.py`
 
 You should see our first quote, the one hard-coded into line 2, printed out in your terminal:
 `Keep it logically awesome.`
