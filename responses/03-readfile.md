@@ -9,7 +9,7 @@ Next, remove the other comments by deleting `#` from the start of the other four
   quotes = f.readlines()
   f.close()
 
-  print quotes
+  print(quotes)
 ```
 
 Here we are opening the `quotes.txt` file, reading all the lines into a new _variable_ called `quotes`, then closing the file (defined by the variable `f`). Finally, we print out the quotes.
@@ -21,7 +21,7 @@ You can run this code and we'll get a dump of _all_ the quotes in the quotes fil
 Since we only want one quote, we need to edit our code to print only the first value in the `quotes` array.
 
 In your code, find the print line and add this special modifier `[0]` so that the line now reads:
-`  print quotes[0]`
+`  print(quotes[0])`
 
 The square brackets tell Python that we want a specific item in the array. Since it starts counting at zero, we've grabbed the first item.
 
