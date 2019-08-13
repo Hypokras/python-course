@@ -23,7 +23,7 @@ The `last` variable holds the highest index for the array. Then our random numbe
 Finally, update the line where we print a single quote. Instead of including a number between the brackets, we'll put our random number variable:
 `  print quotes[rnd]`
 
-Try running your code a few times with `python get-quote.py` and your quotes should now be chosen at random.
+Try running your code a few times and your quotes should now be chosen at random.
 
 ## Push your changes
 
