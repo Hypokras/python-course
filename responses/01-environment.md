@@ -8,9 +8,11 @@ Before we can start writing Python, we need to make sure you have your environme
 
 ## Check that Python is installed
 
-Your machine may already have Python, or you might need to install it. To find out, go to your command line terminal and type: `python -V`
+Your machine may already have Python, or you might need to install it. We also want to check that the right version of Python is present. To find out, go to your command line terminal and type: `python -V`
 
-If you see your Python version displayed, you’re all set. Otherwise, you’ll need to [download Python](https://www.python.org/downloads/) for your operating system.
+Make sure to use a capital `-V` or you'll get something very different. If you get an error or have a version less than 3, try this: `python3 -V` (again with the capital `-V`).
+
+If you see your Python version displayed, you’re all set. Otherwise, you’ll need to [download Python](https://www.python.org/downloads/) for your operating system. Make sure it's Python 3, as previous versions are deprecated.
 
 ## Check that Git is installed
 
