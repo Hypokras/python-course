@@ -14,7 +14,7 @@ Next, remove the other comments by deleting `#` from the start of the other four
 
 Here we are opening the `quotes.txt` file, reading all the lines into a new _variable_ called `quotes`, then closing the file (defined by the variable `f`). Finally, we print out the quotes.
 
-You can run this code using `python get-quote.py` and we'll get a dump of _all_ the quotes in the quotes file. That's because Python stored them all in an _array_, which is a single variable that holds a list of values.
+You can run this code and we'll get a dump of _all_ the quotes in the quotes file. That's because Python stored them all in an _array_, which is a single variable that holds a list of values.
 
 ## Print the first element of an array
 
@@ -27,6 +27,6 @@ The square brackets tell Python that we want a specific item in the array. Since
 
 ## Comment with the first quote
 
-Run your code using `python get-quote.py` and copy the value to your clipboard.
+Run your code and copy the value to your clipboard.
 
 Paste the quote as a comment here and I'll follow up with next steps!
