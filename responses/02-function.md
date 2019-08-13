@@ -8,7 +8,7 @@ Maybe use a synonym of main, such as `primary`.
 
 The important thing is to change it in _both places_, the first line and the last line.
 
-Now run your code again: `python get-quote.py`
+Now run your code again: `python get-quote.py` or `python3 get-quote.py`
 
 If you get an error, you might have only changed `main` in one place, or removed the important `()` from after the name. You'd also get an error if you changed that `__main__` thing (line 10), so leave that one be.
 
