@@ -6,6 +6,6 @@ Since the first value is the _zeroth_, you'll need to remove one from the number
 
 ## Comment with the last quote
 
-Run your code using `python get-quote.py` and copy the value to your clipboard.
+Run your code and copy the value to your clipboard.
 
 Paste the quote as a comment here and I'll follow up with next steps!
